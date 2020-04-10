@@ -16,6 +16,7 @@ class TaskWidget extends StatelessWidget {
     return Hero(
       tag:tag,
       child: Material(
+        color: Colors.transparent,
         child: InkWell(
           onTap: (){Navigator.push(
               context,

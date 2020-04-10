@@ -44,6 +44,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Global.greywhite,
       body: Column(
         children: <Widget>[
           Expanded(
@@ -67,6 +68,25 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                                   fit: BoxFit.cover,
                                 ),
                               ),
+                            ),
+                            Positioned(
+                              top:20,
+                              left: 0,
+                              child: Material(
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  onTap: (){
+                                    Navigator.pop(context);
+                                  },
+                                  child: IconButton(
+                                    icon: FaIcon(
+                                      FontAwesomeIcons.arrowLeft,
+                                      size: 20,
+                                      color: Global.white,
+                                    ),
+                                  ),
+                                ),
+                              )
                             ),
                             Positioned(
                               bottom: 0,

@@ -4,6 +4,7 @@ import 'package:taskme/components/my_flutter_app_icons.dart';
 import 'package:taskme/components/constants.dart';
 import 'package:taskme/screens/add_task_screen.dart';
 import 'package:taskme/screens/home_screen.dart';
+import 'package:taskme/screens/profile_screen.dart';
 
 class MainNav extends StatefulWidget {
   @override
@@ -17,6 +18,9 @@ class _MainNavState extends State<MainNav> {
   final List<Widget>_children = [
     HomeScreen(),
     AddTaskScreen(),
+    AddTaskScreen(),
+    AddTaskScreen(),
+    ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -109,7 +113,7 @@ class _MainNavState extends State<MainNav> {
       ),
       body: _children[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        elevation:10,
+        elevation:0,
         selectedItemColor: Global.hotpink,
         unselectedItemColor: Global.lesshotpink,
         showSelectedLabels: false,

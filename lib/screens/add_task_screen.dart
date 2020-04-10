@@ -25,6 +25,7 @@ class AddTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Global.greywhite,
       body: Container(
         width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.all(20),
