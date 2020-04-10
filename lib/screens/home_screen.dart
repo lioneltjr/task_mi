@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 8,
+        elevation: 1,
         backgroundColor: Global.lesshotpink,
         automaticallyImplyLeading: false,
         actions: <Widget>[
@@ -96,7 +96,7 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       backgroundColor: Global.greywhite,
-      body: ListView(
+      body: Column(
         children: <Widget>[
           Container(
             padding: EdgeInsets.all(20),

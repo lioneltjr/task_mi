@@ -149,10 +149,10 @@ class TaskWidget extends StatelessWidget {
                                                   borderRadius: BorderRadius.circular(20),
                                                   child: Container(
                                                     padding: EdgeInsets.only(
-                                                        top: 3,
-                                                        bottom: 3,
-                                                        right: 5,
-                                                        left: 5),
+                                                        top: 7,
+                                                        bottom: 5,
+                                                        right: 6,
+                                                        left: 6),
                                                     decoration: BoxDecoration(
                                                         color: Global.lesshotpink,
                                                         borderRadius:

@@ -26,7 +26,7 @@ class AddTaskScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 8,
+        elevation: 1,
         backgroundColor: Global.lesshotpink,
         automaticallyImplyLeading: false,
         actions: <Widget>[
@@ -151,7 +151,7 @@ class AddTaskScreen extends StatelessWidget {
               ),
               SizedBox(height: 15),
               Container(
-                height: MediaQuery.of(context).size.height - 15 - 22 - 20 -156, //15 sizedbox, 22 font size, 20 padding, 156 navbar bottom and appbar
+                height: MediaQuery.of(context).size.height - 15 - 22 - 20 -164, //15 sizedbox, 22 font size, 20 padding, 156 navbar bottom and appbar
                 child: ListView.builder(
                     itemCount:tasklist.length, itemBuilder: (context,index){
                   return Container(
