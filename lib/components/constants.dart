@@ -15,6 +15,9 @@ class Global {
   static const Color lesshotpink = Color(0xffffadbe);
   static const Color red = Color(0xfff78981);
 
+
+  //TODO: add different color theme & switch
+
   Size screenSize(BuildContext context) {
     return MediaQuery.of(context).size;
   }
