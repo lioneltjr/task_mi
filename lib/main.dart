@@ -5,6 +5,7 @@ import 'package:taskme/screens/home_screen.dart';
 import 'package:taskme/screens/login_screen.dart';
 import 'package:taskme/screens/register_screen.dart';
 import 'package:taskme/viewmodels/home_model.dart';
+import 'package:taskme/screens/mainNav.dart';
 
 void main() => runApp(TaskMe());
 
@@ -25,7 +26,7 @@ class TaskMe extends StatelessWidget {
       routes: {
         '/': (context) => LoginScreen(),
         '/register': (context) => RegisterScreen(),
-        '/home': (context) => HomeScreen(),
+        '/home': (context) => MainNav(),
       }
       ),
     );
