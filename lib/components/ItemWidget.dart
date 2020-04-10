@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:taskme/components/ItemDetailsWidget.dart';
+import 'package:taskme/components/TaskDetailsWidget.dart';
 import 'package:taskme/components/constants.dart';
 import 'package:taskme/viewmodels/FadeAnimation.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,13 +10,13 @@ class ItemWidget extends StatefulWidget {
   final String tag;
   final String title;
   final String difficulty;
-  final int duration;
+  final int points;
   final context;
   ItemWidget(
       {this.image,
       this.tag,
       this.context,
-      this.duration,
+      this.points,
       this.title,
       this.difficulty});
 
@@ -34,11 +34,11 @@ class _ItemWidgetState extends State<ItemWidget> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => ItemDetailsWidget(
+                  builder: (context) => TaskDetailsWidget(
                         image: widget.image,
                         tag: widget.tag,
                         title: widget.title,
-                        duration: widget.duration,
+                        points: widget.points,
                         difficulty: widget.difficulty,
                       )));
         },
@@ -148,7 +148,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                     child: Material(
                       type: MaterialType.transparency,
                       child: Text(
-                        widget.duration.toString() + ' Points',
+                        widget.points.toString() + ' Points',
                         style: TextStyle(
                             color: Global.white,
                             fontSize: 15,
