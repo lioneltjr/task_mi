@@ -15,6 +15,7 @@ class Global {
   static const Color lesshotpink = Color(0xffffadbe);
   static const Color red = Color(0xfff78981);
   static const Color greywhite = Color(0xfff1f2f6);
+  static const Color shadowColor = Color(0xfff1f2f6);
 
   //TODO: add different color theme & switch
 

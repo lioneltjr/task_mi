@@ -40,7 +40,6 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
