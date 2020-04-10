@@ -1,0 +1,86 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:taskme/components/ItemWidget.dart';
+import 'package:taskme/screens/mainNav.dart';
+import 'package:taskme/components/constants.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:taskme/components/TaskWidget.dart';
+
+class AddTaskScreen extends StatelessWidget {
+  final List<Widget> tasklist = [
+    TaskWidget(image: 'assets/images/brushteeth.jpg',title: 'Brush your teeth!',difficulty: 'Beginner',points: 10,tag:'1'),
+    TaskWidget(image: 'assets/images/preparedinner.jpg',title: 'Help to prepare dinner!',difficulty: 'Intermediate',points: 20,tag:'2'),
+    TaskWidget(image: 'assets/images/walkpet.jpg',title: 'Walk the dog!',difficulty: 'Easy',points: 15,tag:'3'),
+    TaskWidget(image: 'assets/images/brushteeth.jpg',title: 'Brush your teeth!',difficulty: 'Beginner',points: 10,tag:'4'),
+    TaskWidget(image: 'assets/images/preparedinner.jpg',title: 'Help to prepare dinner!',difficulty: 'Intermediate',points: 20,tag:'5'),
+    TaskWidget(image: 'assets/images/walkpet.jpg',title: 'Walk the dog!',difficulty: 'Easy',points: 15,tag:'6'),
+    TaskWidget(image: 'assets/images/brushteeth.jpg',title: 'Brush your teeth!',difficulty: 'Beginner',points: 10,tag:'7'),
+    TaskWidget(image: 'assets/images/preparedinner.jpg',title: 'Help to prepare dinner!',difficulty: 'Intermediate',points: 20,tag:'8'),
+    TaskWidget(image: 'assets/images/walkpet.jpg',title: 'Walk the dog!',difficulty: 'Easy',points: 15,tag:'9'),
+    TaskWidget(image: 'assets/images/brushteeth.jpg',title: 'Brush your teeth!',difficulty: 'Beginner',points: 10,tag:'10'),
+    TaskWidget(image: 'assets/images/preparedinner.jpg',title: 'Help to prepare dinner!',difficulty: 'Intermediate',points: 20,tag:'11'),
+    TaskWidget(image: 'assets/images/walkpet.jpg',title: 'Walk the dog!',difficulty: 'Easy',points: 15,tag:'12'),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                height: 22,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    Text(
+                      'All available tasks',
+                      style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w900,
+                          fontFamily: 'HappyMarker',
+                          color: Global.hotpink
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Filter ',
+                          style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w400,
+                              color:Global.lesshotpink
+                          ),
+                        ),
+                        Icon(
+                          Icons.filter_list,
+                          color: Global.lesshotpink,
+                          size: 13,
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(height: 15),
+              Container(
+                height: MediaQuery.of(context).size.height - 15 - 22 - 20 -156, //15 sizedbox, 22 font size, 20 padding, 156 navbar bottom and appbar
+                child: ListView.builder(
+                    itemCount:tasklist.length, itemBuilder: (context,index){
+                  return Container(
+                      child:tasklist[index]
+                  );
+                }),
+              )
+            ],
+          )
+      ),
+    );
+  }
+}
