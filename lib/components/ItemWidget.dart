@@ -37,6 +37,9 @@ class _ItemWidgetState extends State<ItemWidget> {
                   builder: (context) => ItemDetailsWidget(
                         image: widget.image,
                         tag: widget.tag,
+                        title: widget.title,
+                        duration: widget.duration,
+                        difficulty: widget.difficulty,
                       )));
         },
         child: Stack(

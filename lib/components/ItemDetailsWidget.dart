@@ -1,15 +1,18 @@
 //TODO: change variables, add firebase
 
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:taskme/components/constants.dart';
 import 'package:taskme/viewmodels/FadeAnimation.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ItemDetailsWidget extends StatefulWidget {
   final String image;
   final String tag;
-  const ItemDetailsWidget({Key key, this.image, this.tag}) : super(key: key);
+  final int duration;
+  final String title;
+  final String difficulty;
+  const ItemDetailsWidget({Key key, this.image, this.tag,this.duration, this.title, this.difficulty}) : super(key: key);
 
   @override
   _ItemDetailsWidgetState createState() => _ItemDetailsWidgetState();
@@ -93,7 +96,7 @@ class _ItemDetailsWidgetState extends State<ItemDetailsWidget> {
                                     child: Material(
                                       type: MaterialType.transparency,
                                       child: Text(
-                                        'Functional upper body workout',
+                                        widget.title,
                                         style: TextStyle(
                                             color: Global.white,
                                             fontSize: 24,
@@ -113,7 +116,7 @@ class _ItemDetailsWidgetState extends State<ItemDetailsWidget> {
                                     child: Material(
                                       type: MaterialType.transparency,
                                       child: Text(
-                                        'Intemediate',
+                                        widget.difficulty,
                                         style: TextStyle(
                                             color: Global.white,
                                             fontSize: 16,
@@ -129,10 +132,10 @@ class _ItemDetailsWidgetState extends State<ItemDetailsWidget> {
                                   0.7,
                                   Row(
                                     children: <Widget>[
-                                      Icon(
-                                        Icons.timer,
+                                      FaIcon(
+                                        FontAwesomeIcons.gem,
                                         color: Global.white,
-                                        size: 16,
+                                        size: 15,
                                       ),
                                       SizedBox(
                                         width: 5,
@@ -142,7 +145,7 @@ class _ItemDetailsWidgetState extends State<ItemDetailsWidget> {
                                         child: Material(
                                           type: MaterialType.transparency,
                                           child: Text(
-                                            '30 minutes',
+                                            widget.duration.toString()+' points',
                                             style: TextStyle(
                                                 color: Global.white,
                                                 fontSize: 16,
