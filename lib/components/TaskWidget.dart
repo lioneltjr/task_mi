@@ -9,25 +9,27 @@ class TaskWidget extends StatelessWidget {
   final int points;
   final String image;
   final String tag;
-  TaskWidget({this.image, this.title, this.difficulty, this.points,this.tag});
+  TaskWidget({this.image, this.title, this.difficulty, this.points, this.tag});
 
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag:tag,
+      tag: tag,
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: (){Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => TaskDetailsWidget(
-                    image: image,
-                    tag: tag,
-                    title: title,
-                    points: points,
-                    difficulty: difficulty,
-                  )));},
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => TaskDetailsWidget(
+                          image: image,
+                          tag: tag,
+                          title: title,
+                          points: points,
+                          difficulty: difficulty,
+                        )));
+          },
           child: Container(
             child: Column(
               children: <Widget>[
@@ -85,12 +87,14 @@ class TaskWidget extends StatelessWidget {
                                       MediaQuery.of(context).size.height / 8 -
                                       40,
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 12.0, bottom: 9),
+                                        padding: const EdgeInsets.only(
+                                            top: 12.0, bottom: 9),
                                         child: Text(
                                           difficulty,
                                           style: TextStyle(
@@ -109,7 +113,8 @@ class TaskWidget extends StatelessWidget {
                                       Row(
                                         children: <Widget>[
                                           Padding(
-                                            padding: const EdgeInsets.only(bottom: 1),
+                                            padding: const EdgeInsets.only(
+                                                bottom: 1),
                                             child: FaIcon(
                                               FontAwesomeIcons.gem,
                                               color: Global.lesshotpink,
@@ -120,33 +125,45 @@ class TaskWidget extends StatelessWidget {
                                             width: 5,
                                           ),
                                           Container(
-                                            width: MediaQuery.of(context).size.width -
-                                                MediaQuery.of(context).size.height / 8 -
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width -
+                                                MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    8 -
                                                 40 -
                                                 15 -
                                                 5 -
                                                 2,
                                             child: Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               mainAxisSize: MainAxisSize.max,
                                               children: <Widget>[
                                                 Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      top: 8.0, bottom: 6.0),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 8.0,
+                                                          bottom: 6.0),
                                                   child: Text(
-                                                      points.toString() + ' points',
+                                                      points.toString() +
+                                                          ' points',
                                                       style: TextStyle(
                                                           fontSize: 15,
-                                                          fontWeight: FontWeight.w500,
+                                                          fontWeight:
+                                                              FontWeight.w500,
                                                           letterSpacing: 0.1,
-                                                          color: Global.hotpink)),
+                                                          color:
+                                                              Global.hotpink)),
                                                 ),
                                                 InkWell(
-                                                  onTap: (){
+                                                  onTap: () {
                                                     print('addtask');
                                                   },
-                                                  borderRadius: BorderRadius.circular(20),
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
                                                   child: Container(
                                                     padding: EdgeInsets.only(
                                                         top: 7,
@@ -154,9 +171,11 @@ class TaskWidget extends StatelessWidget {
                                                         right: 6,
                                                         left: 6),
                                                     decoration: BoxDecoration(
-                                                        color: Global.lesshotpink,
+                                                        color:
+                                                            Global.lesshotpink,
                                                         borderRadius:
-                                                            BorderRadius.circular(20)),
+                                                            BorderRadius
+                                                                .circular(20)),
                                                     child: Text(
                                                       'Add Task',
                                                       style: TextStyle(
