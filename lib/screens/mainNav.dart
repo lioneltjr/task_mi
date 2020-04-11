@@ -5,6 +5,7 @@ import 'package:taskme/components/constants.dart';
 import 'package:taskme/screens/add_task_screen.dart';
 import 'package:taskme/screens/home_screen.dart';
 import 'package:taskme/screens/profile_screen.dart';
+import 'package:taskme/screens/rewards_screen.dart';
 
 class MainNav extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _MainNavState extends State<MainNav> {
     HomeScreen(),
     AddTaskScreen(),
     AddTaskScreen(),
-    AddTaskScreen(),
+    RewardsScreen(),
     ProfileScreen(),
   ];
 

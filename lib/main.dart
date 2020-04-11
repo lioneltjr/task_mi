@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:taskme/screens/add_task_screen.dart';
-import 'package:taskme/screens/home_screen.dart';
 import 'package:taskme/screens/login_screen.dart';
 import 'package:taskme/screens/profile_screen.dart';
 import 'package:taskme/screens/register_screen.dart';
+import 'package:taskme/screens/rewards_screen.dart';
 import 'package:taskme/viewmodels/home_model.dart';
 import 'package:taskme/screens/mainNav.dart';
 
@@ -31,6 +31,7 @@ class TaskMe extends StatelessWidget {
         '/home': (context) => MainNav(),
         '/profile': (context) => ProfileScreen(),
         '/addTask': (context) => AddTaskScreen(),
+        '/reward': (context) => RewardsScreen(),
       }
       ),
     );
