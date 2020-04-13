@@ -119,7 +119,7 @@ class _RewardsScreenState extends State<RewardsScreen> with SingleTickerProvider
         children: <Widget>[
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
                 padding: EdgeInsets.only(top: 10),
@@ -202,7 +202,66 @@ class _RewardsScreenState extends State<RewardsScreen> with SingleTickerProvider
                   ],
                 ),
               ),
-
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                width: MediaQuery.of(context).size.width/2 - 20,
+                  height: MediaQuery.of(context).size.height/3.5,
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        left:5,
+                        top:MediaQuery.of(context).size.height/5,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width/2 - 30,
+                          height: MediaQuery.of(context).size.height/3.5,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black26,
+                                    offset: Offset(
+                                        0.2,0.2
+                                    ),
+                                    blurRadius: 3
+                                )
+                              ]
+                          ),
+                          child: Column(
+                            children: <Widget>[
+                              Text('HELLO')
+                            ],
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top:0,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width/2-20,
+                          height: MediaQuery.of(context).size.height/5,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              image: DecorationImage(
+                                  image: Image.asset('assets/images/brushteeth.jpg').image,
+                                  fit: BoxFit.cover
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black26,
+                                    offset: Offset(
+                                        0.2,0.2
+                                    ),
+                                    blurRadius: 3
+                                )
+                              ]
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ],

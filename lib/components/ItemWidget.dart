@@ -58,7 +58,7 @@ class _ItemWidgetState extends State<ItemWidget> {
                     BoxShadow(
                         color: Colors.grey[400],
                         blurRadius: 1,
-                        offset: Offset(2, 2)),
+                        offset: Offset(0.5, 0.5)),
                     BoxShadow(
                         color: Global.white,
                         blurRadius: 0.8,
@@ -68,7 +68,7 @@ class _ItemWidgetState extends State<ItemWidget> {
             Container(
               height: 250,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(11),
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
