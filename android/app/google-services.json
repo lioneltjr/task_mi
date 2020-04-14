@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "882859544550",
+    "firebase_url": "https://taskmi-c7962.firebaseio.com",
+    "project_id": "taskmi-c7962",
+    "storage_bucket": "taskmi-c7962.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882859544550:android:c40cc7c390d1881bf69027",
+        "android_client_info": {
+          "package_name": "com.lioneltjr.taskme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "882859544550-jlufekhr9c4jhio9ld39904qdumr5ngl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvOERd9AaFXK6AvEYgXoGySEO8EsQvVDg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "882859544550-jlufekhr9c4jhio9ld39904qdumr5ngl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
