@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:taskme/components/RewardsWidget.dart';
 import 'package:taskme/components/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RewardsScreen extends StatefulWidget {
-
   @override
   _RewardsScreenState createState() => _RewardsScreenState();
 }
 
-class _RewardsScreenState extends State<RewardsScreen> with SingleTickerProviderStateMixin {
+class _RewardsScreenState extends State<RewardsScreen>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   bool _selectedCategory = true;
   Animation animation;
@@ -25,7 +26,7 @@ class _RewardsScreenState extends State<RewardsScreen> with SingleTickerProvider
     );
     animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
     _controller.forward(from: 0);
-    _controller.addListener((){
+    _controller.addListener(() {
       setState(() {});
     });
   }
@@ -46,7 +47,7 @@ class _RewardsScreenState extends State<RewardsScreen> with SingleTickerProvider
               children: <Widget>[
                 InkWell(
                   borderRadius: BorderRadius.circular(50),
-                  onTap: (){},
+                  onTap: () {},
                   child: IconButton(
                     icon: Icon(
                       Icons.notifications_none,
@@ -56,7 +57,7 @@ class _RewardsScreenState extends State<RewardsScreen> with SingleTickerProvider
                 ),
                 InkWell(
                   borderRadius: BorderRadius.circular(10),
-                  onTap: (){},
+                  onTap: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -66,13 +67,12 @@ class _RewardsScreenState extends State<RewardsScreen> with SingleTickerProvider
                         height: 35,
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/images/task_mi_logo.png'),
-                                fit: BoxFit.fill
-                            )
-                        ),
+                                image: AssetImage(
+                                    'assets/images/task_mi_logo.png'),
+                                fit: BoxFit.fill)),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top:8.0),
+                        padding: const EdgeInsets.only(top: 8.0),
                         child: Text(
                           'Task Mi!',
                           style: TextStyle(
@@ -82,16 +82,15 @@ class _RewardsScreenState extends State<RewardsScreen> with SingleTickerProvider
                               wordSpacing: 0,
                               letterSpacing: 0,
                               shadows: [
-                                Shadow( // bottomLeft
+                                Shadow(
+                                    // bottomLeft
                                     offset: Offset(-0.2, -0.2),
-                                    color: Global.purple
-                                ),
-                                Shadow( // bottomLeft
+                                    color: Global.purple),
+                                Shadow(
+                                    // bottomLeft
                                     offset: Offset(0.2, 0.2),
-                                    color: Global.purple
-                                ),
-                              ]
-                          ),
+                                    color: Global.purple),
+                              ]),
                         ),
                       ),
                     ],
@@ -99,9 +98,9 @@ class _RewardsScreenState extends State<RewardsScreen> with SingleTickerProvider
                 ),
                 InkWell(
                   borderRadius: BorderRadius.circular(50),
-                  onTap: (){},
+                  onTap: () {},
                   child: IconButton(
-                    onPressed:(){},
+                    onPressed: () {},
                     icon: FaIcon(
                       FontAwesomeIcons.commentDots,
                       color: Global.white,
@@ -139,13 +138,9 @@ class _RewardsScreenState extends State<RewardsScreen> with SingleTickerProvider
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.black12,
-                                  offset: Offset(
-                                      0.3,0.3
-                                  ),
-                                  blurRadius: 4
-                              )
-                            ]
-                        ),
+                                  offset: Offset(0.3, 0.3),
+                                  blurRadius: 4)
+                            ]),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -158,8 +153,7 @@ class _RewardsScreenState extends State<RewardsScreen> with SingleTickerProvider
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w900,
-                                      color: Colors.black54
-                                  ),
+                                      color: Colors.black54),
                                 ),
                                 SizedBox(height: 3),
                                 Text(
@@ -167,8 +161,7 @@ class _RewardsScreenState extends State<RewardsScreen> with SingleTickerProvider
                                   style: TextStyle(
                                       fontSize: 13,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.black45
-                                  ),
+                                      color: Colors.black45),
                                 ),
                               ],
                             ),
@@ -177,7 +170,7 @@ class _RewardsScreenState extends State<RewardsScreen> with SingleTickerProvider
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Padding(
-                                  padding: const EdgeInsets.only(top:3.0),
+                                  padding: const EdgeInsets.only(top: 3.0),
                                   child: FaIcon(
                                     FontAwesomeIcons.gem,
                                     size: 19,
@@ -198,76 +191,39 @@ class _RewardsScreenState extends State<RewardsScreen> with SingleTickerProvider
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                width: MediaQuery.of(context).size.width/2 - 20,
-                  height: MediaQuery.of(context).size.height/3.5,
-                  child: Stack(
+              SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Positioned(
-                        left:5,
-                        top:MediaQuery.of(context).size.height/5,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width/2 - 30,
-                          height: MediaQuery.of(context).size.height/3.5,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black26,
-                                    offset: Offset(
-                                        0.2,0.2
-                                    ),
-                                    blurRadius: 3
-                                )
-                              ]
-                          ),
-                          child: Column(
-                            children: <Widget>[
-                              Text('HELLO')
-                            ],
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        top:0,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width/2-20,
-                          height: MediaQuery.of(context).size.height/5,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                  image: Image.asset('assets/images/brushteeth.jpg').image,
-                                  fit: BoxFit.cover
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black26,
-                                    offset: Offset(
-                                        0.2,0.2
-                                    ),
-                                    blurRadius: 3
-                                )
-                              ]
-                          ),
-                        ),
-                      ),
+                      SizedBox(height:15),
+                      Text(
+                        'Rewards',
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w900,
+                            fontFamily: 'HappyMarker',
+                            color: Global.hotpink
+                        ),),
+                      SizedBox(height: 10),
+                      RewardsWidget(),
+                      RewardsWidget(),
                     ],
                   ),
                 ),
               ),
+
             ],
           ),
         ],
       ),
     );
   }
+
   @override
   void dispose() {
     // TODO: implement dispose

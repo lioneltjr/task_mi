@@ -5,13 +5,44 @@ import 'package:taskme/components/ItemWidget.dart';
 import 'package:taskme/screens/mainNav.dart';
 import 'package:taskme/components/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final _auth = FirebaseAuth.instance;
+
+  FirebaseUser loggedInUser;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getCurrentUser();
+  }
+
+  void getCurrentUser() async{
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        loggedInUser = user;
+        //print(loggedInUser.email);
+      }
+    }
+    catch(e){
+      print(e);
+    }
+  }
+
   final List<Widget> workouts = [
     ItemWidget(image: 'assets/images/brushteeth.jpg',title: 'Brush your teeth!',difficulty: 'Beginner',points: 10,tag: '3',),
     ItemWidget(image: 'assets/images/preparedinner.jpg',title: 'Help to prepare dinner!',difficulty: 'Intermediate',points: 20,tag: '2',),
     ItemWidget(image: 'assets/images/walkpet.jpg',title: 'Walk the dog!',difficulty: 'Easy',points: 15,tag: '4',),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
