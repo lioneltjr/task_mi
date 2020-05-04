@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,8 +10,18 @@ import 'package:taskme/viewmodels/home_model.dart';
 import 'package:taskme/components/constants.dart';
 import 'package:taskme/screens/home_screen.dart';
 import 'package:taskme/screens/register_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _auth = FirebaseAuth.instance;
+  String email;
+  String password;
+  bool inputError = false;
   @override
   Widget build(BuildContext context) {
 
@@ -90,7 +101,8 @@ class LoginScreen extends StatelessWidget {
                   prefixIconData: Icons.mail_outline,
                   suffixIconData: model.isValid ? Icons.check : null,
                   onChanged: (value) {
-                    model.isValidEmail(value);
+                    //model.isValidEmail(value);
+                    email = value;
                   },
                 ),
                 SizedBox(height: 10),
@@ -104,19 +116,76 @@ class LoginScreen extends StatelessWidget {
                       suffixIconData: model.isVisible
                           ? Icons.visibility
                           : Icons.visibility_off,
+                      onChanged: (value){
+                        password = value;
+                      },
                     ),
                     SizedBox(height: 10),
-                    Text('Forgot password?',
-                        style: TextStyle(
-                          color: Global.hotpink,
-                        ))
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text('Invalid email/password!',
+                            style: TextStyle(
+                              color: inputError ? Global.red : Global.white,
+                            )
+                        ),
+                        Text('Forgot password?',
+                            style: TextStyle(
+                              color: Global.hotpink,
+                            )),
+                      ],
+                    )
                   ],
                 ),
                 SizedBox(height: 20),
-                ButtonWidget(
-                  title: 'Login',
-                  hasBorder: false,
-                  pageRoute: '/home',
+                Material(
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment(0.1,6.2) ,
+                          colors: [ Global.lesshotpink, Global.hotpink]
+                      ),
+
+                      color: Global.lesshotpink,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: InkWell(
+                      onTap: () async{
+                        try{
+                          final user = await _auth.signInWithEmailAndPassword(email: email, password: password);
+                          if(user != null){
+                            Navigator.pushNamed(context, '/home');
+                          }
+                          else{
+                            setState(() {
+                              inputError = true;
+                            });
+                          }
+                        }
+                        catch(e){
+                          setState(() {
+                            inputError = true;
+                          });
+                          print(e);
+                        }
+                      },
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Container(
+                        height: 60.0,
+                        child: Center(
+                          child: Text(
+                            'Login',
+                            style: TextStyle(
+                              color:  Global.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(height: 10),
                 ButtonWidget(
