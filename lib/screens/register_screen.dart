@@ -1,15 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:taskme/screens/login_screen.dart';
 import 'package:taskme/components/TextFieldWidget.dart';
-import 'package:taskme/components/ButtonWidget.dart';
 import 'package:taskme/components/WaveWidget.dart';
 import 'package:taskme/viewmodels/home_model.dart';
 import 'package:taskme/components/constants.dart';
-import 'package:taskme/screens/home_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
 
 class RegisterScreen extends StatelessWidget {
+  final _auth = FirebaseAuth.instance;
+  final db = Firestore.instance;
+  String email;
+  String password;
+  String name;
+  String userType;
+
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<HomeModel>(context);
@@ -17,38 +25,19 @@ class RegisterScreen extends StatelessWidget {
     bool keyboardOpen = MediaQuery.of(context).viewInsets.bottom > 0;
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Global.white,
       body: Stack(
         children: <Widget>[
-          Container(
-              height: size.height - 200,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomCenter,
-                  colors: [Global.pink, Global.lesshotpink, Colors.red],
-                ),
-              )),
-          AnimatedPositioned(
-            duration: Duration(milliseconds: 500),
-            curve: Curves.easeOutQuad,
-            top: keyboardOpen ? -size.height / 3.7 : 0.0,
-            child: WaveWidget(
-              size: size,
-              yOffset: size.height / 3.0,
-              color: Global.white,
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.only(top: 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 70),
+                SizedBox(height: 40),
                 Opacity(
                   opacity: keyboardOpen ? 0.0 : 1.0,
                   child: Image(
-                    height: 100,
+                    height: 50,
                     image: AssetImage(
                       'assets/images/task_mi_logo.png',
                     ),
@@ -56,21 +45,67 @@ class RegisterScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                      'Register',
-                      style: TextStyle(
-                          color: Global.white,
-                          fontSize: 45.0,
-                          fontWeight: FontWeight.w900,
-                          fontFamily: 'HappyMarker'),
+                    Opacity(
+                      opacity: keyboardOpen ? 0.0 : 1.0,
+                      child: Text(
+                        'Register',
+                        style: TextStyle(
+                            color: Global.lesshotpink,
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.w900,
+                            fontFamily: 'HappyMarker'),
+                      ),
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 20,
+                ),
+                Opacity(
+                  opacity: keyboardOpen ? 0.0 : 1.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      GestureDetector(
+                        onTap: (){
+                          userType = 'parent';
+                          print(userType);
+                      },
+                        child: Container(
+                          height: 150,
+                          width: 150,
+                          color: Colors.red,
+                          child: Center(
+                            child: Text(
+                              'PARENT'
+                            ),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap:(){
+                          userType = 'child';
+                          print(userType);
+                        },
+                        child: Container(
+                          height: 150,
+                          width: 150,
+                          color: Colors.red,
+                          child: Center(
+                            child: Text(
+                              'CHILD'
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                )
               ],
             ),
           ),
@@ -80,12 +115,24 @@ class RegisterScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 TextFieldWidget(
+                  hintText: 'Name',
+                  obscureText: false,
+                  prefixIconData: Icons.face,
+                  suffixIconData: model.isValid ? Icons.check : null,
+                  onChanged: (value) {
+                    model.isValidEmail(value);
+                    name = value;
+                  },
+                ),
+                SizedBox(height: 10),
+                TextFieldWidget(
                   hintText: 'Email',
                   obscureText: false,
                   prefixIconData: Icons.mail_outline,
                   suffixIconData: model.isValid ? Icons.check : null,
                   onChanged: (value) {
                     model.isValidEmail(value);
+                    email = value;
                   },
                 ),
                 SizedBox(height: 10),
@@ -99,6 +146,9 @@ class RegisterScreen extends StatelessWidget {
                       suffixIconData: model.isVisible
                           ? Icons.visibility
                           : Icons.visibility_off,
+                      onChanged: (value){
+                        password = value;
+                      },
                     ),
                     SizedBox(height: 10),
                     Text('Forgot password?',
@@ -108,10 +158,55 @@ class RegisterScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 20),
-                ButtonWidget(
-                  title: 'Register',
-                  hasBorder: false,
-                  pageRoute: '/home',
+                Material(
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment(0.1,6.2) ,
+                          colors: [ Global.lesshotpink, Global.hotpink]
+                      ),
+                      color:  Global.lesshotpink,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: InkWell(
+                      onTap: () async{
+                        try {
+                          final newUser = await _auth
+                              .createUserWithEmailAndPassword(
+                              email: email, password: password);
+                          if(newUser != null){
+                            db.collection("users").add(
+                                {
+                                  "name" : name,
+                                  "email" : email,
+                                  "userType" : userType,
+                                }).then((value){
+                              print(value.documentID);
+                            });
+                            //Navigator.pushNamed(context,'/home');
+                          }
+                        }
+                        catch(e){
+                          print(e);
+                        }
+                      },
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Container(
+                        height: 60.0,
+                        child: Center(
+                          child: Text(
+                            'Register',
+                            style: TextStyle(
+                              color: Global.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(height: 10),
                 Material(
